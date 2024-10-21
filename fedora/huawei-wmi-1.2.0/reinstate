@@ -1,0 +1,21 @@
+#! /bin/sh -e
+
+. /usr/lib/huawei-wmi/available
+
+echo Old battery charge-thresholds "$(cat -- "$WMI$cct")"
+cp -- "$DEF$cct" "$WMI"
+echo New battery charge-thresholds "$(cat -- "$WMI$cct")"
+
+if [ -e "$WMI$KLT" ]
+then
+	echo Old keyboard backlight timeout "$(cat -- $WMI$KLT)"
+	cp -- "$DEF$KLT" "$WMI"
+	echo New keyboard backlight timeout "$(cat -- $WMI$KLT)"
+fi
+
+if [ -e "$WMI$PUL" ]
+then
+	echo Old power mode unlock "$(cat -- $WMI$PUL)"
+	cp -- "$DEF$PUL" "$WMI"
+	echo New power mode unlock "$(cat -- $WMI$PUL)"
+fi
